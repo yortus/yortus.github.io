@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MAZE MAN</title>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/lodash.js"></script>
+    <script type="text/javascript" src="scripts/keydrown.js"></script>
+    <script type="text/javascript" src="scripts/peg-0.8.0.min.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+    <link rel="stylesheet" href="game.css" />
+    <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+
+    <!-- LEVELS -->
+    <script type="text/javascript" src="levels/maze-00.txt"></script>
+    <script type="text/javascript" src="levels/maze-01.txt"></script>
+    <script type="text/javascript" src="levels/maze-02.txt"></script>
+    <script type="text/javascript" src="levels/maze-03.txt"></script>
+</head>
+<body>
+    <div id="titlebar">
+        <h2>Maze Man!</h2>
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        <h2>Level: </h2>
+        <h2 id="level"></h2>
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        <h2>Lives: </h2>
+        <img id="life1" src="images/heart.png" />
+        <img id="life2" src="images/heart.png" />
+        <img id="life3" src="images/heart.png" />
+
+    </div>
+    <div id="maze"></div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿body {
+}
+
+#titlebar {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'VT323';
+    height: 2em;
+    width: calc(40*16px);
+}
+
+#titlebar > * {
+    display: inline;
+}
+
+#maze {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    width: 16px;
+    height: 16px;
+    background: lightgreen;
+}
+
+.wall {
+    background-image: url("images/brick.png");
+}
+
+.treasure {
+    background-image: url("images/treasure.png");
+}
+
+.hole {
+    background-image: url("images/hole.png");
+}
+
+#player {
+    background-image: url("images/mazeman.png");
+    position: absolute;
+    width: 16px;
+    height: 32px;
+}
+
+#player.wins {
+    visibility: hidden;
+    opacity: 0;
+    -moz-transition: all 0.4s ease-out, visibility 0.4s step-end;
+    -o-transition: all 0.4s ease-out, visibility 0.4s step-end;
+    -webkit-transition: all 0.4s ease-out, visibility 0.4s step-end;
+    transition: all 0.4s ease-out, visibility 0.4s step-end;
+}
+
+#maze.died .cell {
+    background: red;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+}
+
+#maze.wins .cell {
+    background: yellow;
+    -moz-transition: all 2s ease-out;
+    -o-transition: all 2s ease-out;
+    -webkit-transition: all 2s ease-out;
+    transition: all 2s ease-out;
+}
+
+#maze.wins .treasure {
+    background-image: url("images/jewels.png");
+    -moz-transform: scale(3, 3);
+    -ms-transform: scale(3, 3);
+    -o-transform: scale(3, 3);
+    -webkit-transform: scale(3, 3);
+    transform: scale(3, 3);
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}

@@ -9,6 +9,8 @@ $(document).ready(function () {
     showCurrentLives();
     loadCurrentLevel();
     startGameLoop();
+    $('#credits-show').click(function() { $('#credits-popup').show(); });
+    $('#credits-hide').click(function() { $('#credits-popup').hide(); });
 });
 
 

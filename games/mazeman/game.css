@@ -1,10 +1,11 @@
 ﻿body {
 }
 
-#titlebar {
+#titlebar,
+#credits {
+    font-family: 'VT323';
     margin-left: auto;
     margin-right: auto;
-    font-family: 'VT323';
     height: 2em;
     width: calc(40*16px);
 }
@@ -13,12 +14,42 @@
     display: inline;
 }
 
+#credits > * {
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: right;
+}
+
+#credits-popup {
+    display: none;
+    position: relative;
+    font-family: 'VT323';
+    color: darkblue;
+    background: lightblue;
+    border: 3px solid gray;
+    border-radius: 5px;
+    top: -512px; /* -32 * 16px */
+    width: calc(32 * 16px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#credits-hide {
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 #maze {
     display: table;
     margin-left: auto;
     margin-right: auto;
 }
-
 
 .row {
     display: table-row;

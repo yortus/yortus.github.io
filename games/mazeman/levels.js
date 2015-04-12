@@ -184,6 +184,52 @@ levels[03] = `
 
 levels[04] = `
 ########################################
+#                            HH      TT#
+#       HHHHHHHHHHHHHHHHHHHH      ##TTT#
+#                                   ####
+#HHHHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHH 
+#                                      #
+#      HHHHHHHHHHHH    HHHHHHHHHHHH    #
+#HHHHHHHHHHHHHHHHHH      HHHHHHHHHHHHHHH
+###########H   H     H     #############          
+#                                      #
+#                                      #
+#HHHHHHHHHHHH HHHHHHHHH HHHHHHHHHHHHHHHH 
+#                                      #
+#                  HHHHHHHHHHHHH       #
+#H#                                    #
+# T################                    #
+#H#                                    #
+#                                      #
+#                                      #
+#                                      #
+#           YHHHHHHHHHHHHHHHHHHHHHHHHHHH 
+#HHHHHHHHH                             #
+#TTTTTTTTTH                            #
+##################################H    #
+#                                      #
+# HHHHHHHHHHHHHHHHH                    #
+#                                      #
+#H H H H H H H H H H H H H H H H H H  H  
+#                                      #
+#    HHHHHHHHHHHHHHHHHHH               #
+#                                      #
+#                                      #
+####################### P     ##########
+#                       ######         #
+#                                      #
+#                                      #
+#                                      #
+#                                      #
+#                                      #
+########################################`;
+
+
+
+
+
+levels[05] = `
+########################################
 #   #       H       #H     #     H     #
 # T #   H   #          H#     H     #  #
 #   #   #   H#### #####   ###H##H#H#H  #
@@ -228,45 +274,45 @@ levels[04] = `
 
 
 
-levels[05] = `
+levels[06] = `
 ########################################
-#                            HH      TT#
-#       HHHHHHHHHHHHHHHHHHHH      ##TTT#
-#                                   ####
-#HHHHHHHHHHHHHHHHHHHHHHHHHH HHHHHHHHHHHH 
+#P                                  HH #
+#################################  #####
 #                                      #
-#      HHHHHHHHHHHH    HHHHHHHHHHHH    #
-#HHHHHHHHHHHHHHHHHH      HHHHHHHHHHHHHHH
-###########H   H     H     #############          
-#                                      #
-#                                      #
-#HHHHHHHHHHHH HHHHHHHHH HHHHHHHHHHHHHHHH 
-#                                      #
-#                  HHHHHHHHHHHHH       #
-#H#                                    #
-# T################                    #
-#H#                                    #
-#                                      #
-#                                      #
-#                                      #
-#           YHHHHHHHHHHHHHHHHHHHHHHHHHHH 
-#HHHHHHHHH                             #
-#TTTTTTTTTH                            #
-##################################H    #
-#                                      #
-# HHHHHHHHHHHHHHHHH                    #
-#                                      #
-#H H H H H H H H H H H H H H H H H H  H  
-#                                      #
-#    HHHHHHHHHHHHHHHHHHH               #
-#                                      #
-#                                      #
-####################### P     ##########
-#                       ######         #
-#                                      #
-#                                      #
-#                                      #
-#                                      #
+#   ################################   #
+#   # HHHHHH                      H#   #
+#   ####################   #########   #
+#   #                                  #
+#   #   ############################   #
+#   #   #    H#        #H          #   #
+#   #   #          #   #H     H#   #   #
+#   #   ############   #H  T  H#   #   #
+#   #                  #HHHHHHH#   #   #
+#   #   ########################   #   #
+#   #       HHHHHHHHHH # H#        #   #
+#   #H                 #H #H  ######   #
+#   #######   ######   # H#   #H   #   #
+#        H#      H #   #H #  H#    #   #
+#      H  ##########   #  #   # H  #   #
+#   #     #            #  #H  #    #   #
+#   #     #  H##########  #   #    #   #
+#   #     #            #  #   #    #   #
+#   #     ##########H  #  #   #  H #   #
+#   #     #            #  #   #    #   #
+#   #     #  H##########  #   # H  #   #
+#   #     #            #  #   #    #   #
+#   #     ##########H  #  #   #    #   #
+#   #     #            #  #   #   H#   #
+#   #H    #  H##########  #  H#    #   #
+#   #H    #               #   #    #   #
+#   #H    #############H  #   #    #   #
+#   #H    #               #   #H   #   #
+#   #H    #  H#############   #    #   #
+#   #H    #                   #    #   #
+#   #H    #####################    #   #
+#   #H                             #   #
+#   ################################   #
+#    HHHHHHHHHHHHHHHHHHHHHHHHHH        #
 #                                      #
 ########################################`;
 

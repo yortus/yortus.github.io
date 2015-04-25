@@ -6,12 +6,28 @@ lives = 3;
 
 // Start the game when the page has loaded.
 $(document).ready(function () {
+
+    parseLevelMaps();
     showCurrentLives();
     loadCurrentLevel();
     startGameLoop();
     $('#credits-show').click(function() { $('#credits-popup').show(); });
     $('#credits-hide').click(function() { $('#credits-popup').hide(); });
 });
+
+
+function parseLevelMaps() {
+    var rawLevelMaps = $('#level-maps').text();
+    var rawLevels = rawLevelMaps.split(/L[0-9]+/).slice(1);
+    for (var i = 0; i < rawLevels.length; ++i) {
+        var rawLevel = rawLevels[i];
+        var lines = rawLevel.split('\n').slice(1, 41);
+        for (var j = 0; j < lines.length; ++j) {
+            lines[j] = lines[j].trim();
+        }
+        levels[i] = lines.join('\n');
+    }
+}
 
 
 function loadCurrentLevel() {
@@ -35,7 +51,7 @@ function loadCurrentLevel() {
 
     // Get the text for the level's map.
     var mazeText = levels[currentLevel];
-    var rows = mazeText.split('\n').slice(1);
+    var rows = mazeText.split('\n');
 
     // 'Draw' the level using CSS classes.
     for (var y = 0; y < 40; ++y) {

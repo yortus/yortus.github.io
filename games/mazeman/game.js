@@ -39,14 +39,14 @@ var gamepad = {
 
 
 function enableGamepad() {
-    $('#gamepad .up').on('mousedown touchstart', function () { gamepad.UP.isDown = true; });
-    $('#gamepad .up').on('mouseup mouseout touchend', function () { gamepad.UP.isDown = false; });
-    $('#gamepad .down').on('mousedown touchstart', function () { gamepad.DOWN.isDown = true; });
-    $('#gamepad .down').on('mouseup mouseout touchend', function () { gamepad.DOWN.isDown = false; });
-    $('#gamepad .left').on('mousedown touchstart', function () { gamepad.LEFT.isDown = true; });
-    $('#gamepad .left').on('mouseup mouseout touchend', function () { gamepad.LEFT.isDown = false; });
-    $('#gamepad .right').on('mousedown touchstart', function () { gamepad.RIGHT.isDown = true; });
-    $('#gamepad .right').on('mouseup mouseout touchend', function () { gamepad.RIGHT.isDown = false; });
+    $('#gamepad .up').on('mousedown touchstart', function (e) { gamepad.UP.isDown = true; e.preventDefault(); });
+    $('#gamepad .up').on('mouseup mouseout touchend', function (e) { gamepad.UP.isDown = false; e.preventDefault(); });
+    $('#gamepad .down').on('mousedown touchstart', function (e) { gamepad.DOWN.isDown = true; e.preventDefault(); });
+    $('#gamepad .down').on('mouseup mouseout touchend', function (e) { gamepad.DOWN.isDown = false; e.preventDefault(); });
+    $('#gamepad .left').on('mousedown touchstart', function (e) { gamepad.LEFT.isDown = true; e.preventDefault(); });
+    $('#gamepad .left').on('mouseup mouseout touchend', function (e) { gamepad.LEFT.isDown = false; e.preventDefault(); });
+    $('#gamepad .right').on('mousedown touchstart', function (e) { gamepad.RIGHT.isDown = true; e.preventDefault(); });
+    $('#gamepad .right').on('mouseup mouseout touchend', function (e) { gamepad.RIGHT.isDown = false; e.preventDefault(); });
 }
 
 

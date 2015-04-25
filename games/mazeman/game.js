@@ -6,10 +6,10 @@ lives = 3;
 
 // Start the game when the page has loaded.
 $(document).ready(function () {
-
     parseLevelMaps();
     showCurrentLives();
     loadCurrentLevel();
+    enableGamepad();
     startGameLoop();
     $('#credits-show').click(function() { $('#credits-popup').show(); });
     $('#credits-hide').click(function() { $('#credits-popup').hide(); });
@@ -27,6 +27,26 @@ function parseLevelMaps() {
         }
         levels[i] = lines.join('\n');
     }
+}
+
+
+var gamepad = {
+    UP: { isDown: false },
+    DOWN: { isDown: false },
+    LEFT: { isDown: false },
+    RIGHT: { isDown: false }
+}
+
+
+function enableGamepad() {
+    $('#gamepad .up').on('mousedown touchstart', function () { gamepad.UP.isDown = true; });
+    $('#gamepad .up').on('mouseup mouseout touchend', function () { gamepad.UP.isDown = false; });
+    $('#gamepad .down').on('mousedown touchstart', function () { gamepad.DOWN.isDown = true; });
+    $('#gamepad .down').on('mouseup mouseout touchend', function () { gamepad.DOWN.isDown = false; });
+    $('#gamepad .left').on('mousedown touchstart', function () { gamepad.LEFT.isDown = true; });
+    $('#gamepad .left').on('mouseup mouseout touchend', function () { gamepad.LEFT.isDown = false; });
+    $('#gamepad .right').on('mousedown touchstart', function () { gamepad.RIGHT.isDown = true; });
+    $('#gamepad .right').on('mouseup mouseout touchend', function () { gamepad.RIGHT.isDown = false; });
 }
 
 
@@ -110,8 +130,12 @@ function isHoleAt(x, y) {
 function update() {
 
     // Move/draw player
-    var dx = kd.LEFT.isDown() ? -1 : kd.RIGHT.isDown() ? 1 : 0;
-    var dy = kd.UP.isDown() ? -1 : kd.DOWN.isDown() ? 1 : 0;
+    var UP = kd.UP.isDown() || gamepad.UP.isDown;
+    var DOWN = kd.DOWN.isDown() || gamepad.DOWN.isDown;
+    var LEFT = kd.LEFT.isDown() || gamepad.LEFT.isDown;
+    var RIGHT = kd.RIGHT.isDown() || gamepad.RIGHT.isDown;
+    var dx = LEFT ? -1 : RIGHT ? 1 : 0;
+    var dy = UP ? -1 : DOWN ? 1 : 0;
     if (isWallAt(player.x + dx, player.y + dy)) {
         if (dx != 0 && dy != 0) {
             if (!isWallAt(player.x + dx, player.y))         dy = 0;
@@ -123,6 +147,7 @@ function update() {
         }
     }
     player.move(dx, dy);
+    dx = dy = 0;
 
     // Fell in a hole?
     if (isHoleAt(player.x, player.y)) {

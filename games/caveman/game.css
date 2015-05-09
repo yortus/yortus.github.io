@@ -77,21 +77,14 @@
 
 .cell {
     display: table-cell;
-    width: 16px;
-    height: 16px;
-    background: lightgreen;
+    width: 32px;
+    height: 32px;
+    background: #444;
 }
 
-.wall {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAABxpRE9UAAAAAgAAAAAAAAAIAAAAKAAAAAgAAAAIAAAAbWW2DLcAAAA5SURBVDgRYvgfIf8fht/crYOzYWIgGp84A7EKkdXB2CCDKTcAZAolmAGf/2BORabR1Q8SAygJAwAAAAD///uBJ+oAAAA2SURBVGP4HyH/H4bf3K2Ds2FiIBqfOAOxCpHVwdgggyk3AGQKJZgBn/9gTkWm0dUPEgMoCQMAwmnGw9NyPnkAAAAASUVORK5CYII=') /*images/brick.png*/;
-}
-
-.treasure {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAABxpRE9UAAAAAgAAAAAAAAAIAAAAKAAAAAgAAAAIAAAAiLXWGkAAAABUSURBVDgRYuDk5PxPDGZhYfmPjGF6GECM/798sOP15v//A/GvL95gjKwOJAbSS7QB6JpRDODg4PiPDYNsB2GY09HVEO0CZNuR2YQNwBU2UPHBYQAAAAD//w87floAAAAdSURBVGPg5OT8//+XD1kYpJdh1IDBEgagmCAXAwCVGaSPULoqBAAAAABJRU5ErkJggg==') /*images/treasure.png*/;
-}
-
-.hole {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABnRSTlMAIgCxAExuUeJpAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAs0lEQVR4AZWSzRUCIQyE0acl2ICN2IAHj1yojgtHtwTrsQQuBoc3yYbFH05sMt9MFtidl2v4Zx1G8eV+YvFxezrBCoA050xRCkn2FtuzZ9XH95IWYJvZAaeGyyajCTCDiLH4LKWw0gCx31TbHGEwhSY4b1q6jQIzxRSotf7CtAQ55pTaeX9gYoy4DR1JmNlviJrhHQAtjTEEal62JqCE2ejn1FJfvaWeE3SAL48PxqPInt4L7+RDyiZUSGcAAAAASUVORK5CYII=') /*images/hole.png*/;
+.rocks {
+    background: transparent;
+    background-image: url('images/rocks.png');
 }
 
 #player {
@@ -99,6 +92,7 @@
     position: absolute;
     width: 16px;
     height: 32px;
+    transform: scale(2);
 }
 
 #player.wins {

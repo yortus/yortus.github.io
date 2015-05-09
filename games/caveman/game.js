@@ -81,10 +81,8 @@ function loadCurrentLevel() {
 
             var cell = row.charAt(x);
             switch (cell) {
-                case '#': $(id).addClass('wall'); break;
+                case '#': $(id).addClass('rocks'); break;
                 case 'P': player.x = x; player.y = y; break;
-                case 'T': $(id).addClass('treasure'); break;
-                case 'H': $(id).addClass('hole'); break;
             }
         }
     }
@@ -102,28 +100,16 @@ var player = {
     move: function(dx, dy) {
         var x = player.x = player.x + dx;
         var y = player.y = player.y + dy;
-        var left = (x * 16) + 'px';
-        var top = ((y - 1) * 16) + 'px';
+        var left = (x * 32) + 'px';
+        var top = ((y - 1) * 32) + 'px';
         $('#player').css({ 'margin-left': left, 'margin-top': top});
     }
 }
 
 
-function isWallAt(x, y) {
+function isRocksAt(x, y) {
     var id = '#c-' + x + '-' + y;
-    return $(id).hasClass('wall');
-}
-
-
-function isTreasureAt(x, y) {
-    var id = '#c-' + x + '-' + y;
-    return $(id).hasClass('treasure');
-}
-
-
-function isHoleAt(x, y) {
-    var id = '#c-' + x + '-' + y;
-    return $(id).hasClass('hole');
+    return $(id).hasClass('rocks');
 }
 
 
@@ -136,10 +122,10 @@ function update() {
     var RIGHT = kd.RIGHT.isDown() || gamepad.RIGHT.isDown;
     var dx = LEFT ? -1 : RIGHT ? 1 : 0;
     var dy = UP ? -1 : DOWN ? 1 : 0;
-    if (isWallAt(player.x + dx, player.y + dy)) {
+    if (isRocksAt(player.x + dx, player.y + dy)) {
         if (dx != 0 && dy != 0) {
-            if (!isWallAt(player.x + dx, player.y))         dy = 0;
-            else if (!isWallAt(player.x, player.y + dy))    dx = 0;
+            if (!isRocksAt(player.x + dx, player.y))        dy = 0;
+            else if (!isRocksAt(player.x, player.y + dy))   dx = 0;
             else                                            dx = dy = 0;
         }
         else {
@@ -149,56 +135,56 @@ function update() {
     player.move(dx, dy);
     dx = dy = 0;
 
-    // Fell in a hole?
-    if (isHoleAt(player.x, player.y)) {
+    //// Fell in a hole?
+    //if (isHoleAt(player.x, player.y)) {
 
-        // Player died!
-        --lives;
-        $('#cave').addClass('died');
-        setTimeout(function () {
-            if (lives <= 0) {
+    //    // Player died!
+    //    --lives;
+    //    $('#cave').addClass('died');
+    //    setTimeout(function () {
+    //        if (lives <= 0) {
 
-                // Player loses game!
-                alert('Oh no! You lose the game!!! Better luck next time.');
-                lives = 3;
-                currentLevel = 0;
-            }
-            else {
-                alert('Aaa! You lose a life!');
-            }
-            $('#cave').removeClass('died');
-            showCurrentLives();
-            loadCurrentLevel();
-            startGameLoop();
-        }, 1000);
-    }
+    //            // Player loses game!
+    //            alert('Oh no! You lose the game!!! Better luck next time.');
+    //            lives = 3;
+    //            currentLevel = 0;
+    //        }
+    //        else {
+    //            alert('Aaa! You lose a life!');
+    //        }
+    //        $('#cave').removeClass('died');
+    //        showCurrentLives();
+    //        loadCurrentLevel();
+    //        startGameLoop();
+    //    }, 1000);
+    //}
 
-    // Found treasure?
-    else if (isTreasureAt(player.x, player.y)) {
+    //// Found treasure?
+    //else if (isTreasureAt(player.x, player.y)) {
 
-        // Player wins level!
-        $('#player').addClass('wins');
-        $('#cave').addClass('wins');
+    //    // Player wins level!
+    //    $('#player').addClass('wins');
+    //    $('#cave').addClass('wins');
 
-        setTimeout(function() {
-            ++currentLevel;
-            if (currentLevel >= levels.length) {
+    //    setTimeout(function() {
+    //        ++currentLevel;
+    //        if (currentLevel >= levels.length) {
 
-                // Player wins game!
-                alert('YOU\'RE THE CAVE MAN CHAMPION!!!');
-                currentLevel = 0;
-            }
-            $('#cave').removeClass('wins');
-            loadCurrentLevel();
-            startGameLoop();
-        }, 2000);
+    //            // Player wins game!
+    //            alert('YOU\'RE THE CAVE MAN CHAMPION!!!');
+    //            currentLevel = 0;
+    //        }
+    //        $('#cave').removeClass('wins');
+    //        loadCurrentLevel();
+    //        startGameLoop();
+    //    }, 2000);
 
-    }
+    //}
 
     // Nothing happened, keep playing....
-    else {
+    //else {
         setTimeout(update, 100);
-    }
+    //}
 }
 
 

@@ -69,6 +69,9 @@ function loadCurrentLevel() {
     }
     $('#cave').html(mazeHTML);
 
+    // TODO: temp testing... generalise this depending on factors
+    $('#cave-outer').scrollTop(256).scrollLeft(256);
+
     // Get the text for the level's map.
     var mazeText = levels[currentLevel];
     var rows = mazeText.split('\n');

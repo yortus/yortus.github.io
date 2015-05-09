@@ -103,11 +103,10 @@
 }
 
 #player {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAgCAIAAACU62+bAAAABnRSTlMAIgCxAExuUeJpAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABFElEQVR4AWNU2ujDAAN3JQ7B2cgM5Rd2cC4TVhV4BFlQ5Mw+Yle6yRefDbNuvYZIwxnIpmBxUpqaKEQFnEFAA3ZXwUSx2PBOVhUiC2cgG4HqabCM0OPbEKVABqZtWDRA9GAqhYgwIkccXNFdv81AtjJSaMKlsPgBl9kQcaiT7jpuQVH3mRHIveuIIqa8H5SIQDZAHIDfYLgycp0EsQ7sDFS3Ab0OdgnYBhBJsg2018D4//9/iBMh0YTLD/CQJNlJLFjjH2InMglXhp74HMLOoKvObEAWIdlJ2DU8zmwAInSrwHzsGrAqhQjSXgN6KB3Ybgy0WnkTyH5kNtyRtHcSFhsYGUH5EwjgDLh7gAx0DWiKMPUAALkLPgfmxEZCAAAAAElFTkSuQmCC') /*images/mazeman.png*/;
+    background-image: url('images/player.png');
     position: absolute;
-    width: 16px;
-    height: 32px;
-    transform: scale(2);
+    width: 32px;
+    height: 64px;
 }
 
 #player.wins {

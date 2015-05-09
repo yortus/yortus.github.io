@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>CAVE MAN</title>
+    <meta name="viewport" content="initial-scale=1" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="scripts/keydrown.min.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+    <link rel="stylesheet" href="game.css" />
+    <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <table id="page">
+        <tr>
+            <td id="status">
+                <h1 class="huge">Cave Man!</h1>
+                <h1><span>Level: </span><span id="level"></span></h1>
+                <h1>
+                    <span>Lives: </span>
+                    <img id="life1" src="images/heart.png" />
+                    <img id="life2" src="images/heart.png" />
+                    <img id="life3" src="images/heart.png" />
+                </h1>
+                <br />
+                <div id="credits">
+                    <h1 id="credits-show">Credits</h1>
+                </div>
+            </td>
+            <td rowspan="2">
+                <div id="cave"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="gamepad">
+                    <tr>
+                        <td></td>
+                        <td class="up">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAABxpRE9UAAAAAgAAAAAAAAAQAAAAKAAAABAAAAAQAAAAiu0RkaUAAABWSURBVFgJYmCAgt+/ff/TE8PsBdP0tBjZrgG1HOYQBhhjoOhRB4yGwGgIjIYARSHwf6P5fxCmpBAj2wFgy2XF//8HYQocQZYDUCyn0BEkOwCr5RQ4AgAAAP//k3uM/AAAAKhJREFUxdJRCoAgDIBhb9FT5+gUHbbz+WAqbuh0c0ojQcIQ/w/UeX8H7QzPFcJ5yDPu0Z6X9jntZlUccAsIFWApvoiYArbiCwgRIMbTe6gnROl3ch0sgI2XKH07iKGAtBYQQ8AwzoTVEAbRAbq4MqyCDBANoIlvhqcQgkAAxj8Ki5AKkQE5bhRmIQXhIE43Wq+hi1dgHeTO/x/g4uB01v9TG4d1jJ4P4RdCkmM10zkU2AAAAABJRU5ErkJggg==" width="64" height="64" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="left">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAcaURPVAAAAAIAAAAAAAAAEAAAACgAAAAQAAAAEAAAAK7REnV0AAABFklEQVRYR7WXTQ4BQRSEexp3EAtxCuH+C+IUVi6BGar1kzFmevr9fSstob4qEroJxOne5UcmPPcxLC5tPo1wXKXsmA4O4bPkzMYrvNi+R4VqPQiPu00+1WEmQOHt9VbdHpgISJoTaoF+OLc9UAlomhNigWG4pD0QCVg0J9gCY+HS9oAlYNmcqBaYCte0B1UCHs2JWYFSuLY9KAp4NidYX8IhMapenii+A+bFzJ7MVihKbNehOyzzQUbVhp5LVH+IkxLKFVjfIo8lWAJgVEKxAlsAWC4hEgB/EsIVxALAYgmVAPiREKygFgCaJUwEwFeCuYKZAJAs8bkdO9wP8UvZnB/5mQneN+TPAvmqbEVaop35o5IyQ3gBQUqP/6BymL4AAAAASUVORK5CYII=" width="64" height="64" />
+                        </td>
+                        <td></td>
+                        <td class="right">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAcaURPVAAAAAIAAAAAAAAAEAAAACgAAAAQAAAAEAAAAK7REnV0AAABD0lEQVRYR7WXSw7CMAxE3QCXYMUpENx/AeIUiAXiDkAK0yYSKv3E9uSt2kU8z7OJ0kjm9GzT1x/vfZDVJaY/EsdNlx26n5lwEELoJKikzGYpPNMe1hJjpDehWivstvQmiqc155fI7UGXME1iSqim5BYAS8I1gSGhPv3bAvBK+Dv84pEwnRq2AKwSlAYyFgmzwFgLQCtBbSCjkXAJTLUASiWqNJApkXAL4Ib0ULWBeL0vXt8uAdSLmscoCQdVGigNB2aBqe014YDagDYcmATGtreEA0oD1nCgFhhu7wkHrga84UAl8Ls9IxyYGmCFg2KBvD0zHKgaYIeD/nW88D7E9oAdjhdyPzk9leeoES4i8gHeO4z/LJJ4DgAAAABJRU5ErkJggg==" width="64" height="64" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="down">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAcaURPVAAAAAIAAAAAAAAAEAAAACgAAAAQAAAAEAAAAIrtEZGlAAABDUlEQVRYR+2X0Q2CMBRFi5EV/HYLdzBxE8dxEWPiPH67AibofWmbQvva14L0p+dD0DQ9B5ASOqUZhsuodzeh7x/kpo+t5QZEdLXkhp3eVqMb7yc6A5/zgX7Yiv3zTVu6BOYL+HfI3EWXwEqvLxrgDloLO+/PAYxz8id0B6jbkTZLz4g9GGded07vLphEgMIQTwxmchC8Db0IIAwJikFADth1IBgBmBBWDBg5YAMAGwF0iCUyLnbWogEgGpEiIQfJlZAmmB+tBIEciJbi7AihHIifBeKIDDnIehglIzLlICsAsBEFcpAdALyIQjlI3oYxzOJTKgeLAtag6BKsSQtoAS2gBdR/OdX7lV7PlfoCrj6YTD42N5QAAAAASUVORK5CYII=" width="64" height="64" />
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div id="credits-popup">
+        <div style="text-align: center">
+            <h2 id="credits-hide" style="color: white; text-align: right;">Close&nbsp;&nbsp;&nbsp;</h2>
+            <h1>Credits</h1>
+            <h2>&nbsp;</h2>
+            <h2>Artwork: Riley</h2>
+            <h2>Level Design: Riley, Troy</h2>
+            <h2>Programming: Troy</h2>
+        </div>
+    </div>
+    <script id="level-maps" type="text/level-maps">
+        L1
+        ########################################
+        #                      #       #       #
+        #                      #   TT  #       #
+        #                      #   TT  #       #
+        #                      #       #       #
+        #                      #       #       #
+        #                      #       #       #
+        #     ##################       #       #
+        #     #                        #       #
+        #     #                        #       #
+        #     #                        #       #
+        #     #                        #       #
+        #     #                        #       #
+        #     #                        #       #
+        #     #                        #       #
+        #     #       ##################       #
+        #     #              #                 #
+        #     #              #                 #
+        #     #              #                 #
+        #     #              #                 #
+        #     #              #                 #
+        #     #              #                 #
+        #     #              #                 #
+        #     ########       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #       #                 #
+        #            #   P   #                 #
+        ########################################
+
+
+
+
+
+        L2
+        ########################################
+        #                    #       #         #
+        #                    #   T   #         #
+        #                    #       #         #
+        #                    #       #         #
+        #                    #       #         #
+        #########            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       ##############       #         #
+        #                            #         #
+        #                            #         #
+        #                            #         #
+        #                            #         #
+        #                            #         #
+        #                            #         #
+        #                            #         #
+        #       ##############       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #       #         #
+        #       #            #########         #
+        #       #                              #
+        #       #                              #
+        #       #                              #
+        #   P   #                              #
+        ########################################
+    </script>
+
+
+
+
+
+    <script id="blank-level" type="text/level-maps">
+        ########################################
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        #                                      #
+        ########################################`;
+    </script>
+</body>
+</html>

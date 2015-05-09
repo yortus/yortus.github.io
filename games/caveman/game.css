@@ -1,4 +1,6 @@
 ﻿body {
+    background: #022;
+    color: white;
 }
 
 #page {
@@ -26,7 +28,7 @@
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    color: blue;
+    color: lightblue;
 }
 
 #credits-popup {
@@ -64,7 +66,20 @@
     -webkit-touch-callout: none;
 }
 
+#cave-outer {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    width: 640px;
+    height: 640px;
+}
+
 #cave {
+    position: relative;
+    overflow: hidden;
+    width: 1280px;
+    height: 1280px;
+
     display: table;
     border-spacing: 0;
     margin-left: auto;

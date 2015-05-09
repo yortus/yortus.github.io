@@ -133,6 +133,12 @@ function update() {
         }
     }
     player.move(dx, dy);
+    if ((player.x > 6 && dx > 0) || (player.x < 34 && dx < 0)) {
+        $('#cave-outer').scrollLeft($('#cave-outer').scrollLeft() + dx * 32);
+    }
+    if ((player.y > 6 && dy > 0) || (player.y < 34 && dy < 0)) {
+        $('#cave-outer').scrollTop($('#cave-outer').scrollTop() + dy * 32);
+    }
     dx = dy = 0;
 
     //// Fell in a hole?

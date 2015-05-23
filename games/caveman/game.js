@@ -1,5 +1,5 @@
 ﻿// Set initial game state.
-levels = [];
+levels = []; // : { map: string, width: number; height: number; }
 currentLevel = 0;
 lives = 3;
 
@@ -18,14 +18,24 @@ $(document).ready(function () {
 
 function parseLevelMaps() {
     var rawLevelMaps = $('#level-maps').text();
-    var rawLevels = rawLevelMaps.split(/L[0-9]+/).slice(1);
+    var rawLevels = rawLevelMaps.split(/L[0-9]+[ ]*\r?\n/).slice(1);
     for (var i = 0; i < rawLevels.length; ++i) {
         var rawLevel = rawLevels[i];
-        var lines = rawLevel.split('\n').slice(1, 41);
+        var lines = rawLevel.split(/\r?\n/);
+        while (!lines[lines.length - 1]) lines.pop();
+        var longestLine = 0;
         for (var j = 0; j < lines.length; ++j) {
-            lines[j] = lines[j].trim();
+            if (lines[j].length > longestLine) longestLine = lines[j].length;
         }
-        levels[i] = lines.join('\n');
+        for (var j = 0; j < lines.length; ++j) {
+            var padding = longestLine - lines[j].length;
+            for (var k = 0; k < padding; ++k) lines[j] += ' ';
+        }
+        levels[i] = {
+            width: longestLine,
+            height: lines.length,
+            map: lines.join('\n')
+        };
     }
 }
 
@@ -56,10 +66,11 @@ function loadCurrentLevel() {
     $('#level').text(currentLevel + 1);
 
     // Create all divs for maze rows and cells.
+    var level = levels[currentLevel];
     var mazeHTML = '<div id="player"></div>';
-    for (var y = 0; y < 40; ++y) {
+    for (var y = 0; y < level.height; ++y) {
         var row = '<div class="row">';
-        for (var x = 0; x < 40; ++x) {
+        for (var x = 0; x < level.width; ++x) {
             var id = 'c-' + x + '-' + y;
             var cell = '<div id="' + id + '" class="cell"></div>';
             row += cell;
@@ -67,19 +78,22 @@ function loadCurrentLevel() {
         row += '</div>';
         mazeHTML += row;
     }
-    $('#cave').html(mazeHTML);
+    $('#cave')
+    .html(mazeHTML)
+    .width(32 * level.width)
+    .height(32 * level.height);
 
     // TODO: temp testing... generalise this depending on factors
     $('#cave-outer').scrollTop(256).scrollLeft(256);
 
     // Get the text for the level's map.
-    var mazeText = levels[currentLevel];
+    var mazeText = level.map;
     var rows = mazeText.split('\n');
 
     // 'Draw' the level using CSS classes.
-    for (var y = 0; y < 40; ++y) {
+    for (var y = 0; y < level.height; ++y) {
         var row = rows[y];
-        for (var x = 0; x < 40; ++x) {
+        for (var x = 0; x < level.width; ++x) {
             var id = '#c-' + x + '-' + y;
 
             var cell = row.charAt(x);
@@ -136,10 +150,10 @@ function update() {
         }
     }
     player.move(dx, dy);
-    if ((player.x > 6 && dx > 0) || (player.x < 34 && dx < 0)) {
+    if ((player.x > 6 && dx > 0) || (player.x < (levels[currentLevel].width - 6) && dx < 0)) {
         $('#cave-outer').scrollLeft($('#cave-outer').scrollLeft() + dx * 32);
     }
-    if ((player.y > 6 && dy > 0) || (player.y < 34 && dy < 0)) {
+    if ((player.y > 6 && dy > 0) || (player.y < (levels[currentLevel].height - 6) && dy < 0)) {
         $('#cave-outer').scrollTop($('#cave-outer').scrollTop() + dy * 32);
     }
     dx = dy = 0;

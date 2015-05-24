@@ -2,6 +2,7 @@
 levels = []; // : { map: { [row: number]: { [col: number]: string; }; }, width: number; height: number; }
 currentLevel = 0;
 lives = 3;
+keys = 0;
 
 
 // Start the game when the page has loaded.
@@ -70,21 +71,19 @@ function loadCurrentLevel() {
     // Show the current level in the titlebar.
     $('#level').text(currentLevel + 1);
 
-    // Create all divs for maze rows and cells.
+    // Create all divs for maze rows and cells, with classes for objects in the maze.
     var level = levels[currentLevel];
     var mazeHTML = '<div id="player"></div>';
     for (var y = 0; y < level.height; ++y) {
         var row = '<div class="row">';
         for (var x = 0; x < level.width; ++x) {
-            //var id = 'c-' + x + '-' + y;
             var cell = '<div class="cell';
-
             switch (level.map[y][x]) {
                 case '#': cell += ' rocks'; break;
-                case 'K': cell += ' key'; break;
+                case 'K': cell += ' key-gold'; break;
+                case 'D': cell += ' door-gold'; break;
                 case 'P': player.x = x; player.y = y; break;
             }
-            
             cell += '"></div>';
             row += cell;
         }
@@ -122,9 +121,20 @@ var player = {
 function isRocksAt(x, y) {
     return levels[currentLevel].map[y][x] ==='#';
 }
+function isBlockedAt(x, y) {
+    var p = levels[currentLevel].map[y][x];
+    return p ==='#' || p === 'D';
+}
+function isKeyAt(x, y) {
+    return levels[currentLevel].map[y][x] ==='K';
+}
+function isDoorAt(x, y) {
+    return levels[currentLevel].map[y][x] ==='D';
+}
 
 
 function update() {
+    var level = levels[currentLevel];
 
     // Move/draw player
     var UP = kd.UP.isDown() || gamepad.UP.isDown;
@@ -133,7 +143,18 @@ function update() {
     var RIGHT = kd.RIGHT.isDown() || gamepad.RIGHT.isDown;
     var dx = LEFT ? -1 : RIGHT ? 1 : 0;
     var dy = UP ? -1 : DOWN ? 1 : 0;
-    if (isRocksAt(player.x + dx, player.y + dy)) {
+
+    // Hit door?
+    if (isDoorAt(player.x + dx, player.y + dy)) {
+        if (keys > 0) {
+            --keys;
+            level.map[player.x + dy, player.y + dy] = ' ';
+            $('#cave>div:nth-child(' + (player.y + dy + 2) + ')>div:nth-child(' + (player.x + dx + 1) + ')').removeClass('door-gold');
+        }
+    }
+
+    // Hit wall, door, etc?
+    if (isBlockedAt(player.x + dx, player.y + dy)) {
         if (dx != 0 && dy != 0) {
             if (!isRocksAt(player.x + dx, player.y))        dy = 0;
             else if (!isRocksAt(player.x, player.y + dy))   dx = 0;
@@ -144,13 +165,20 @@ function update() {
         }
     }
     player.move(dx, dy);
-    if ((player.x > 6 && dx > 0) || (player.x < (levels[currentLevel].width - 6) && dx < 0)) {
+    if ((player.x > 6 && dx > 0) || (player.x < (level.width - 6) && dx < 0)) {
         $('#cave-outer').scrollLeft($('#cave-outer').scrollLeft() + dx * 32);
     }
-    if ((player.y > 6 && dy > 0) || (player.y < (levels[currentLevel].height - 6) && dy < 0)) {
+    if ((player.y > 6 && dy > 0) || (player.y < (level.height - 6) && dy < 0)) {
         $('#cave-outer').scrollTop($('#cave-outer').scrollTop() + dy * 32);
     }
     dx = dy = 0;
+
+    // Hit key?
+    if (isKeyAt(player.x, player.y)) {
+        ++keys;
+        level.map[player.x, player.y] = ' ';
+        $('#cave>div:nth-child(' + (player.y + 2) + ')>div:nth-child(' + (player.x + 1) + ')').removeClass('key-gold');
+    }    
 
     //// Fell in a hole?
     //if (isHoleAt(player.x, player.y)) {

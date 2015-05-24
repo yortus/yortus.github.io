@@ -77,9 +77,6 @@
 #cave {
     position: relative;
     overflow: hidden;
-/*    width: 1280px;
-    height: 1280px;*/
-
     display: table;
     border-spacing: 0;
     margin-left: auto;
@@ -101,8 +98,12 @@
     background-image: url('images/rocks.png');
 }
 
-.key {
-    background-image: url('images/key-yellow.png');
+.key-gold {
+    background-image: url('images/key-gold.png');
+}
+
+.door-gold {
+    background-image: url('images/door-gold.png');
 }
 
 #player {

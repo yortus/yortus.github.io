@@ -1,5 +1,5 @@
 ﻿// Set initial game state.
-levels = []; // : { map: string, width: number; height: number; }
+levels = []; // : { map: { [row: number]: { [col: number]: string; }; }, width: number; height: number; }
 currentLevel = 0;
 lives = 3;
 
@@ -31,10 +31,15 @@ function parseLevelMaps() {
             var padding = longestLine - lines[j].length;
             for (var k = 0; k < padding; ++k) lines[j] += ' ';
         }
+        var rows = [];
+        for (var j = 0; j < lines.length; ++j) {
+            rows.push(lines[j].split(''));
+        }        
+        
         levels[i] = {
             width: longestLine,
             height: lines.length,
-            map: lines.join('\n')
+            map: rows
         };
     }
 }
@@ -71,8 +76,16 @@ function loadCurrentLevel() {
     for (var y = 0; y < level.height; ++y) {
         var row = '<div class="row">';
         for (var x = 0; x < level.width; ++x) {
-            var id = 'c-' + x + '-' + y;
-            var cell = '<div id="' + id + '" class="cell"></div>';
+            //var id = 'c-' + x + '-' + y;
+            var cell = '<div class="cell';
+
+            switch (level.map[y][x]) {
+                case '#': cell += ' rocks'; break;
+                case 'K': cell += ' key'; break;
+                case 'P': player.x = x; player.y = y; break;
+            }
+            
+            cell += '"></div>';
             row += cell;
         }
         row += '</div>';
@@ -85,24 +98,6 @@ function loadCurrentLevel() {
 
     // TODO: temp testing... generalise this depending on factors
     $('#cave-outer').scrollTop(256).scrollLeft(256);
-
-    // Get the text for the level's map.
-    var mazeText = level.map;
-    var rows = mazeText.split('\n');
-
-    // 'Draw' the level using CSS classes.
-    for (var y = 0; y < level.height; ++y) {
-        var row = rows[y];
-        for (var x = 0; x < level.width; ++x) {
-            var id = '#c-' + x + '-' + y;
-
-            var cell = row.charAt(x);
-            switch (cell) {
-                case '#': $(id).addClass('rocks'); break;
-                case 'P': player.x = x; player.y = y; break;
-            }
-        }
-    }
 }
 
 
@@ -118,15 +113,14 @@ var player = {
         var x = player.x = player.x + dx;
         var y = player.y = player.y + dy;
         var left = (x * 32) + 'px';
-        var top = ((y - 1) * 32) + 'px';
+        var top = (y * 32) + 'px';
         $('#player').css({ 'margin-left': left, 'margin-top': top});
     }
 }
 
 
 function isRocksAt(x, y) {
-    var id = '#c-' + x + '-' + y;
-    return $(id).hasClass('rocks');
+    return levels[currentLevel].map[y][x] ==='#';
 }
 
 

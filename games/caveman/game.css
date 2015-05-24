@@ -98,18 +98,21 @@
 }
 
 .rocks {
-    background: transparent;
     background-image: url('images/rocks.png');
+}
+
+.key {
+    background-image: url('images/key-yellow.png');
 }
 
 #player {
     background-image: url('images/player.png');
     position: absolute;
     width: 32px;
-    height: 64px;
+    height: 32px;
 }
 
-#player.wins {
+/*#player.wins {
     visibility: hidden;
     opacity: 0;
     -moz-transition: all 0.4s ease-out, visibility 0.4s step-end;
@@ -135,7 +138,7 @@
 }
 
 #cave.wins .treasure {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAABxpRE9UAAAAAgAAAAAAAAAIAAAAKAAAAAgAAAAIAAAArInV/pEAAAB4SURBVDgRYrjK8P4/Nvz/idt/GGb48RDOhonBaAZsmkFiMAUgGmQALkMIGgDTTBUDMAxhEP6P1QX/33qAvYBsO4wN9xpQ83+cBnTr/P8PxDBNyDSGASAB5IAEaUTGyJpBbLABUNvBLoCbCIo2NM0wPswQuFokAwAAAAD//8z2n/AAAAB0SURBVJWQsRGAMAwDvQM1GzAHHZOxJjPQChtHOQVMQaGT72K97RiOFYP2BajEPpsAkfWwbf7gisYn4CMcoAQwrM6QukzmFjVAQ6yLcG6gU1kz5G7zmWf9BURQ1f8q4AKz++M4ObxN1TDrCvICsLnyAdDOvABRXq00G57vaQAAAABJRU5ErkJggg==') /*images/jewels.png*/;
+    background-image: url('images/jewels.png');
     -moz-transform: scale(3, 3);
     -ms-transform: scale(3, 3);
     -o-transform: scale(3, 3);
@@ -145,4 +148,4 @@
     -o-transition: all 0.4s ease-out;
     -webkit-transition: all 0.4s ease-out;
     transition: all 0.4s ease-out;
-}
+}*/

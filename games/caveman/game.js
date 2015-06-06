@@ -3,6 +3,7 @@ levels = []; // : { map: { [row: number]: { [col: number]: string; }; }, width: 
 currentLevel = 0;
 lives = 3;
 keys = 0;
+jewels = 0;
 
 
 // Start the game when the page has loaded.
@@ -10,6 +11,7 @@ $(document).ready(function () {
     parseLevelMaps();
     showCurrentLives();
     loadCurrentLevel();
+    showCurrentDiamonds();
     enableGamepad();
     startGameLoop();
     $('#credits-show').click(function() { $('#credits-popup').show(); });
@@ -82,6 +84,7 @@ function loadCurrentLevel() {
                 case '#': cell += ' rocks'; break;
                 case 'K': cell += ' key-gold'; break;
                 case 'D': cell += ' door-gold'; break;
+                case 'V': cell += ' diamond'; break;
                 case 'P': player.x = x; player.y = y; break;
             }
             cell += '"></div>';
@@ -131,6 +134,9 @@ function isKeyAt(x, y) {
 function isDoorAt(x, y) {
     return levels[currentLevel].map[y][x] ==='D';
 }
+function isDiamondAt(x, y) {
+    return levels[currentLevel].map[y][x] ==='V';
+}
 
 
 function update() {
@@ -178,6 +184,14 @@ function update() {
         ++keys;
         level.map[player.y][player.x] = ' ';
         $('#cave>div:nth-child(' + (player.y + 2) + ')>div:nth-child(' + (player.x + 1) + ')').removeClass('key-gold');
+    }    
+
+    // Hit diamond?
+    if (isDiamondAt(player.x, player.y)) {
+        ++jewels;
+        level.map[player.y][player.x] = ' ';
+        $('#cave>div:nth-child(' + (player.y + 2) + ')>div:nth-child(' + (player.x + 1) + ')').removeClass('diamond');
+        showCurrentDiamonds();
     }    
 
     //// Fell in a hole?
@@ -238,4 +252,9 @@ function showCurrentLives() {
         var id = '#life' + i;
         if (lives >= i) $(id).show(); else $(id).hide();
     }
+}
+
+
+function showCurrentDiamonds() {
+    $('#jewels').text(jewels);
 }

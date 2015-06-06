@@ -148,7 +148,7 @@ function update() {
     if (isDoorAt(player.x + dx, player.y + dy)) {
         if (keys > 0) {
             --keys;
-            level.map[player.x + dy, player.y + dy] = ' ';
+            level.map[player.y + dy][player.x + dx] = ' ';
             $('#cave>div:nth-child(' + (player.y + dy + 2) + ')>div:nth-child(' + (player.x + dx + 1) + ')').removeClass('door-gold');
         }
     }
@@ -156,9 +156,9 @@ function update() {
     // Hit wall, door, etc?
     if (isBlockedAt(player.x + dx, player.y + dy)) {
         if (dx != 0 && dy != 0) {
-            if (!isRocksAt(player.x + dx, player.y))        dy = 0;
-            else if (!isRocksAt(player.x, player.y + dy))   dx = 0;
-            else                                            dx = dy = 0;
+            if (!isBlockedAt(player.x + dx, player.y))          dy = 0;
+            else if (!isBlockedAt(player.x, player.y + dy))     dx = 0;
+            else                                                dx = dy = 0;
         }
         else {
             dx = dy = 0;
@@ -176,7 +176,7 @@ function update() {
     // Hit key?
     if (isKeyAt(player.x, player.y)) {
         ++keys;
-        level.map[player.x, player.y] = ' ';
+        level.map[player.y][player.x] = ' ';
         $('#cave>div:nth-child(' + (player.y + 2) + ')>div:nth-child(' + (player.x + 1) + ')').removeClass('key-gold');
     }    
 

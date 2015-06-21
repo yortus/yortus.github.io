@@ -94,27 +94,12 @@
     background: #444;
 }
 
-.rocks {
-    background-image: url('images/rocks.png');
-}
-
-.key-gold {
-    background-image: url('images/key-gold.png');
-}
-
-.door-gold {
-    background-image: url('images/door-gold.png');
-}
-
-.diamond {
-    background-image: url('images/diamond.png');
-}
-
 #player {
     background-image: url('images/player.png');
     position: absolute;
     width: 32px;
     height: 32px;
+    z-index: 1;
 }
 
 /*#player.wins {

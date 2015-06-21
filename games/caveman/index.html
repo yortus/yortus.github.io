@@ -4,7 +4,9 @@
     <title>CAVE MAN</title>
     <meta name="viewport" content="initial-scale=1" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="scripts/knockout-3.3.0.js"></script>
     <script type="text/javascript" src="scripts/keydrown.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="game.js"></script>
     <link rel="stylesheet" href="game.css" />
     <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
@@ -14,14 +16,14 @@
         <tr>
             <td id="status">
                 <h1 class="huge">Cave Man!</h1>
-                <h1><span>Level: </span><span id="level"></span></h1>
+                <h1><span>Level: </span><span data-bind="text: currentLevel() + 1"></span></h1>
                 <h1>
                     <span>Lives: </span>
-                    <img id="life1" src="images/heart.png" />
-                    <img id="life2" src="images/heart.png" />
-                    <img id="life3" src="images/heart.png" />
+                    <img data-bind="visible: livesRemaining() >= 1" src="images/heart.png" />
+                    <img data-bind="visible: livesRemaining() >= 2" src="images/heart.png" />
+                    <img data-bind="visible: livesRemaining() >= 3" src="images/heart.png" />
                 </h1>
-                <h1><span>Jewels: </span><span id="jewels"></span></h1>
+                <h1><span>Jewels: </span><span data-bind="text: jewelsCollected"></span></h1>
                 <br />
                 <div id="credits">
                     <h1 id="credits-show">Credits</h1>
@@ -29,7 +31,15 @@
             </td>
             <td rowspan="2">
                 <div id="cave-outer">
-                    <div id="cave">
+                    <div id="player" data-bind="style: { 'margin-left': (32 * player.x()) + 'px', 'margin-top': (32 * player.y()) + 'px' }"></div>
+                    <div id="cave" data-bind="style: { width: 32 * levelMap.width() + 'px', height: 32 * levelMap.height() + 'px' }">
+                        <!-- ko foreach: levelMap.cells -->
+                        <div class="row">
+                            <!-- ko foreach: $data -->
+                            <div class="cell" data-bind="style: { 'background-image': 'url(\'images/' + legend[$data] + '.png\')' }"}"></div>
+                            <!-- /ko -->
+                        </div>
+                        <!-- /ko -->
                     </div>
                 </div>
             </td>

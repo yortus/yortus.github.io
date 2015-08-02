@@ -1,0 +1,141 @@
+﻿body {
+    background: #022;
+    color: white;
+}
+
+#page {
+    width: 100%;
+}
+
+#page td {
+    text-align: center;
+}
+
+#status {
+    font-family: 'VT323';
+    width: 20%;
+    vertical-align: top;
+    text-align: center;
+}
+
+.huge {
+    font-size: 4em;
+}
+
+#credits > * {
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    color: lightblue;
+}
+
+#credits-popup {
+    display: none;
+    position: relative;
+    font-family: 'VT323';
+    color: darkblue;
+    background: lightblue;
+    border: 3px solid gray;
+    border-radius: 5px;
+    top: -512px; /* -32 * 16px */
+    width: calc(32 * 16px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#credits-hide {
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#gamepad {
+    display: inline-table;
+}
+
+#gamepad img {
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+#cave-outer {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    width: 640px;
+    height: 640px;
+}
+
+#cave {
+    position: relative;
+    overflow: hidden;
+    display: table;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    width: 32px;
+    height: 32px;
+    background: limegreen;
+}
+
+#player {
+    background-image: url('images/dragon-full.png');
+    position: absolute;
+    width: 179px;
+    height: 256px;
+    z-index: 1;
+}
+
+/*#player.wins {
+    visibility: hidden;
+    opacity: 0;
+    -moz-transition: all 0.4s ease-out, visibility 0.4s step-end;
+    -o-transition: all 0.4s ease-out, visibility 0.4s step-end;
+    -webkit-transition: all 0.4s ease-out, visibility 0.4s step-end;
+    transition: all 0.4s ease-out, visibility 0.4s step-end;
+}
+
+#cave.died .cell {
+    background: red;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+}
+
+#cave.wins .cell {
+    background: yellow;
+    -moz-transition: all 2s ease-out;
+    -o-transition: all 2s ease-out;
+    -webkit-transition: all 2s ease-out;
+    transition: all 2s ease-out;
+}
+
+#cave.wins .treasure {
+    background-image: url('images/jewels.png');
+    -moz-transform: scale(3, 3);
+    -ms-transform: scale(3, 3);
+    -o-transform: scale(3, 3);
+    -webkit-transform: scale(3, 3);
+    transform: scale(3, 3);
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+}*/

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Troy Gerwien</title>
+    <meta name="description" content="Projects by Troy Gerwien: MVT Games, an interactive deck about compression, and some older games.">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #fbfbf9;
+            --text: #1d1d1b;
+            --muted: #5f5f5a;
+            --rule: #e2e2dc;
+            --link: #1f5fbf;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #141413;
+                --text: #ececea;
+                --muted: #a3a39d;
+                --rule: #2c2c2a;
+                --link: #7fb0ff;
+            }
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        main {
+            max-width: 40rem;
+            margin: 0 auto;
+            padding: 4rem 1rem 3rem;
+        }
+        h1 { font-size: 2rem; margin: 0 0 0.25rem; letter-spacing: -0.01em; }
+        .handle { color: var(--muted); margin: 0 0 3rem; }
+        h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin: 2.5rem 0 1rem;
+        }
+        section > article { padding: 1rem 0; border-top: 1px solid var(--rule); }
+        h3 { font-size: 1.15rem; margin: 0 0 0.25rem; }
+        p { margin: 0 0 0.5rem; }
+        a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+        .links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+        footer {
+            max-width: 40rem;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+            border-top: 1px solid var(--rule);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Troy Gerwien</h1>
+        <p class="handle">yortus</p>
+
+        <section>
+            <h2>Projects</h2>
+
+            <article>
+                <h3>MVT Games</h3>
+                <p>
+                    Classic arcade games rebuilt with MVT (Model-View-Ticker), a way of
+                    structuring games that keeps game state, how it is shown, and the
+                    passing of time apart. With a guide to the approach, and the
+                    <code>@mvtjs</code> libraries on npm.
+                </p>
+                <ul class="links">
+                    <li><a href="/mvt-games/">Play the games</a></li>
+                    <li><a href="/mvt-games/docs/">Read the guide</a></li>
+                    <li><a href="https://github.com/yortus/mvt-games">Source</a></li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Compression</h3>
+                <p>An interactive slide deck about compression.</p>
+                <ul class="links">
+                    <li><a href="/compression/">View the deck</a></li>
+                    <li><a href="https://github.com/yortus/compression">Source</a></li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <h2>Older games</h2>
+            <ul class="links">
+                <li><a href="/games/caveman/">Cave Man</a></li>
+                <li><a href="/games/mazeman/">Maze Man</a></li>
+                <li><a href="/games/mrdragon/">Mr Dragon!</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://github.com/yortus">github.com/yortus</a>
+    </footer>
+</body>
+</html>
